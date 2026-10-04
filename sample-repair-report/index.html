@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Enquiry Path Repair Report — Northstar Plumbing (Demonstration) | QuietForgeTools</title>
+  <meta name="description" content="Fictional demonstration of the written diagnostic and repair report delivered with the £149 Enquiry Path Repair. Not a real customer or completed client job." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://mamonasr789-png.github.io/quietforgetools-enquiry-repair/sample-repair-report/" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .report-meta {
+      display: grid;
+      gap: 8px 16px;
+      grid-template-columns: 1fr;
+      margin: 0 0 18px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    @media (min-width: 560px) {
+      .report-meta { grid-template-columns: 140px 1fr; }
+      .report-meta dt { font-weight: 600; color: var(--text); }
+    }
+    .report-meta dt { font-weight: 600; color: var(--text); margin-top: 6px; }
+    .report-meta dd { margin: 0; }
+    .phase {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .phase .tag { margin-bottom: 10px; }
+    .phase h3 { margin: 0 0 8px; }
+    .phase p, .phase li { color: var(--muted); font-size: 0.95rem; }
+    .phase ul { margin: 8px 0 0; padding-left: 1.15em; }
+    .phase li { margin-bottom: 6px; }
+    .disclosure-box {
+      background: var(--warn-soft);
+      border: 2px solid rgba(240, 179, 90, 0.55);
+      color: var(--warn);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 22px;
+      line-height: 1.45;
+    }
+    .disclosure-box span {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      color: var(--muted);
+    }
+    .codeish {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--surface2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text);
+      word-break: break-word;
+    }
+    .out-scope { border-color: rgba(240, 179, 90, 0.35); }
+    .return-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand"><a href="https://mamonasr789-png.github.io/quietforgetools/"><span>QuietForgeTools</span></a> · Sample repair report</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="price-chip"><strong>Example deliverable</strong> · £149 Enquiry Path Repair</div>
+      <h1>Enquiry Path Repair — diagnostic &amp; completion report</h1>
+      <div class="disclosure-box" role="note">
+        Fictional demonstration — not a real customer or completed client job.
+        <span>This page shows the format and depth of the written report a buyer receives after a qualifying £149 repair. Names, URLs, and findings below are invented for illustration only.</span>
+      </div>
+
+      <dl class="report-meta">
+        <dt>Case</dt>
+        <dd>Northstar Plumbing — DEMONSTRATION</dd>
+        <dt>Offer</dt>
+        <dd>£149 Enquiry Path Repair — one bounded defect</dd>
+        <dt>Reported issue</dt>
+        <dd>Contact form appears to submit; owner never receives the enquiry email</dd>
+        <dt>Report type</dt>
+        <dd>Written diagnostic + repair + verification note (async delivery)</dd>
+      </dl>
+    </div>
+
+    <section id="symptom">
+      <div class="wrap">
+        <div class="phase">
+          <div class="tag">1 · Symptom</div>
+          <h3>What the site owner reported</h3>
+          <ul>
+            <li>Visitors on the Contact page can fill Name, Phone, Message and press Submit.</li>
+            <li>The form shows a success/thank-you state in the browser.</li>
+            <li>No matching enquiry appears in the intended business mailbox (<span class="codeish">enquiries@northstar-plumbing.example</span>).</li>
+            <li>Issue reproducible on desktop and mobile; no visible error message to the visitor.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagnosis">
+      <div class="wrap">
+        <div class="phase">
+          <div class="tag">2 · Diagnosis</div>
+          <h3>Checks performed (least-privilege temporary access)</h3>
+          <ul>
+            <li>Confirmed the public Contact form still posts successfully (HTTP 200 / plugin success response).</li>
+            <li>Inspected form notification settings: “Mail sent to” and “From” addresses.</li>
+            <li>Compared notification recipient against the mailbox the owner monitors daily.</li>
+            <li>Sent one controlled test submission and traced where the notification was delivered.</li>
+            <li>Ruled out a broken Submit button and a front-end validation loop (visitor path completed).</li>
+          </ul>
+          <p style="margin-top:12px;margin-bottom:0">Finding: the form pipeline was completing for the visitor; the failure was in notification routing, not in the submit UI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="root-cause">
+      <div class="wrap">
+        <div class="phase">
+          <div class="tag">3 · Root cause</div>
+          <h3>One bounded defect</h3>
+          <p style="margin:0 0 10px">Contact Form 7 (or equivalent) notification was still addressed to a retired staging address:</p>
+          <p style="margin:0 0 10px"><span class="codeish">wp-admin+staging@oldhost.example</span></p>
+          <p style="margin:0">instead of the live mailbox <span class="codeish">enquiries@northstar-plumbing.example</span>. Submit succeeded; the enquiry never reached the monitored inbox. This is one clearly defined enquiry-path defect within the £149 scope.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="repair">
+      <div class="wrap">
+        <div class="phase">
+          <div class="tag">4 · Repair</div>
+          <h3>Change applied</h3>
+          <ul>
+            <li>Updated the form’s notification “To” address to the agreed live mailbox.</li>
+            <li>Set a sensible From / Reply-To consistent with the site domain (no password changes; no new plugins).</li>
+            <li>Left unrelated forms and site design untouched.</li>
+            <li>Documented the single configuration change in this completion note.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="verification">
+      <div class="wrap">
+        <div class="phase">
+          <div class="tag">5 · Verification</div>
+          <h3>How repair was checked</h3>
+          <ul>
+            <li>Submitted a labelled test enquiry from the live Contact page (desktop).</li>
+            <li>Confirmed the notification arrived in <span class="codeish">enquiries@northstar-plumbing.example</span> within normal mail delay.</li>
+            <li>Repeated one mobile-width submission; same delivery result.</li>
+            <li>Confirmed the visitor still sees a clear confirmation state after Submit.</li>
+          </ul>
+          <p style="margin-top:12px;margin-bottom:0">Result: agreed enquiry path delivers to the monitored mailbox. No claim is made about enquiry volume or sales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="handover">
+      <div class="wrap">
+        <div class="phase">
+          <div class="tag">6 · Handover</div>
+          <h3>What you receive / what happens next</h3>
+          <ul>
+            <li><strong style="color:var(--text)">This written note</strong> — symptom, diagnosis, root cause, change made, verification steps.</li>
+            <li><strong style="color:var(--text)">7-day defect support</strong> — if this agreed repair regresses within 7 days, that regression is fixed under the same offer.</li>
+            <li><strong style="color:var(--text)">Access removed</strong> — temporary collaborator / staging access used for the repair is revoked when work is complete. You keep ownership of the site and content. Passwords are never requested by email.</li>
+          </ul>
+        </div>
+
+        <div class="phase out-scope">
+          <div class="tag">Outside this £149 pass</div>
+          <h3>Not included (quoted separately if needed)</h3>
+          <ul>
+            <li>Redesign, rebrand, or CRO programmes</li>
+            <li>Multiple independent defects on other forms or pages</li>
+            <li>New CRM / automation stacks or multi-location routing</li>
+            <li>Guarantees of more enquiries or revenue</li>
+          </ul>
+        </div>
+
+        <div class="return-box">
+          <h2 style="margin-top:0">Return to the offer</h2>
+          <p class="fine" style="margin-bottom:14px">This was a fictional walkthrough of the deliverable format. To start a real scope check for one broken enquiry, contact, or quote path:</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://mamonasr789-png.github.io/quietforgetools-enquiry-repair/">Back to £149 Enquiry Path Repair</a>
+            <a class="btn btn-ghost" href="mailto:mamonasr789@gmail.com?subject=Enquiry%20Path%20Repair%20%E2%80%94%20%C2%A3149&body=Website%20%2F%20page%20URL%3A%20%0AWhat%20is%20broken%3A%20%0AError%20message%20or%20screenshot%20(if%20any)%3A%20%0A%0AI%27ll%20reply%20with%20whether%20it%20fits%20the%20fixed-price%20scope.%0A">Email to start</a>
+          </div>
+          <p class="btn-note">Primary offer page unchanged in price (£149). No analytics, pixels, cookies, or external APIs on this report page.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="fine"><a href="https://mamonasr789-png.github.io/quietforgetools-enquiry-repair/">Enquiry Path Repair (£149)</a>
+        · <a href="https://mamonasr789-png.github.io/quietforgetools/">QuietForgeTools</a>
+        · Fictional demonstration report — not a real customer case.</p>
+    </div>
+  </footer>
+</body>
+</html>
