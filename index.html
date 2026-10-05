@@ -306,5 +306,21 @@
     </div>
   </footer>
   <script src="demo.js"></script>
+  <script>
+    /* TASK1016 measurement: appends this offer's ref and the same-site page path the visitor came from to the email body. No cookies, storage, network requests or personal data. */
+    (function () {
+      var via = "";
+      try {
+        var r = new URL(document.referrer);
+        if (r.origin === location.origin && /^\/[A-Za-z0-9\/_.-]{1,120}$/.test(r.pathname)) via = " via " + r.pathname;
+      } catch (e) {}
+      var tag = encodeURIComponent("\nRef: enquiry-repair" + via);
+      var links = document.querySelectorAll('a[href^="mailto:"]');
+      for (var i = 0; i < links.length; i++) {
+        var h = links[i].getAttribute("href");
+        if (h.indexOf("body=") > -1) links[i].setAttribute("href", h + tag);
+      }
+    })();
+  </script>
 </body>
 </html>
